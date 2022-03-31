@@ -54,27 +54,27 @@ class Calendar extends Component {
       events: [
         {
           id: 1,
-          text: "Event 1",
+          text: "Do Chores",
           start: "2022-03-07T10:30:00",
           end: "2022-03-07T13:00:00"
         },
         {
           id: 2,
-          text: "Event 2",
+          text: "Setup Environment",
           start: "2022-03-08T09:30:00",
           end: "2022-03-08T11:30:00",
           backColor: "#6aa84f"
         },
         {
           id: 3,
-          text: "Event 3",
+          text: "Haircut",
           start: "2022-03-08T12:00:00",
           end: "2022-03-08T15:00:00",
           backColor: "#f1c232"
         },
         {
           id: 4,
-          text: "Event 4",
+          text: "House Renovation",
           start: "2022-03-06T11:30:00",
           end: "2022-03-06T14:30:00",
           backColor: "#cc4125"
@@ -94,11 +94,11 @@ class Calendar extends Component {
             skipMonths={3}
             startDate={"2022-03-07"}
             selectionDay={"2022-03-07"}
-            onTimeRangeSelected={ args => {
-              this.setState({
-                startDate: args.day
-              });
-            }}
+            // onTimeRangeSelected={ args => {
+            //   this.setState({
+            //     startDate: args.day
+            //   });
+            // }}
           />
         </div>
         <div style={styles.main}>

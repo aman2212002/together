@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 
-
 import "./styles.css";
 
-function Login() {
+const Login = () => {
   // React States
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -12,17 +11,17 @@ function Login() {
   const database = [
     {
       username: "user1",
-      password: "pass1"
+      password: "pass1",
     },
     {
       username: "user2",
-      password: "pass2"
-    }
+      password: "pass2",
+    },
   ];
 
   const errors = {
     uname: "invalid username",
-    pass: "invalid password"
+    pass: "invalid password",
   };
 
   const handleSubmit = (event) => {
@@ -41,6 +40,7 @@ function Login() {
         setErrorMessages({ name: "pass", message: errors.pass });
       } else {
         setIsSubmitted(true);
+        window.location.assign("/dashboard");
       }
     } else {
       // Username not found
@@ -83,5 +83,5 @@ function Login() {
       </div>
     </div>
   );
-}
+};
 export default Login;

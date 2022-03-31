@@ -96,12 +96,12 @@ function Home() {
         
         <div className="main_notes">
           <button className="main_note">
-            <Link to="/MainNote">NOTE</Link>
+            <Link to="/main-note">NOTE</Link>
           </button>
         </div>
         <div className="time_table">
           <button className="time_table">
-            <Link to="/Timetable">TIMETABLE</Link>
+            <Link to="/time-table">TIMETABLE</Link>
           </button>
         </div>
       </nav>
