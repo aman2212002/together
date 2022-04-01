@@ -1,9 +1,14 @@
 .i {
   display: flex;
   height: 100vh;
+  background-color: rgb(0, 0, 0);
 }
 
 .i-left {
+  background-image: url("https://c4.wallpaperflare.com/wallpaper/356/292/33/music-rock-and-roll-vinyl-album-covers-wallpaper-preview.jpg");
+  image-rendering: optimizeQuality;
+  image-orientation: flip;
+  background-size: cover;
   flex: 1;
   display: flex;
   align-items: center;
@@ -24,10 +29,12 @@
 .i-intro {
   font-size: 30px;
   font-weight: 300;
+  color: azure;
 }
 
 .i-name {
   font-size: 60px;
+  color: azure;
 }
 
 .i-title {
@@ -104,6 +111,11 @@
   .i-desc {
     display: none;
   }
+}
+
+.i-desc {
+  color: azure;
+  font-size: 25px;
 }
 .main_notes {
   padding: 10%;
