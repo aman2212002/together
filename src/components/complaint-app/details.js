@@ -1,71 +1,96 @@
 import React, { useState } from "react";
-import { Button, Form, Alert } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
+import Swal from "sweetalert2";
 function Details() {
   const [inputs, setInputs] = useState({});
 
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setInputs((values) => ({ ...values, [name]: value }));
+    if (event.target.files) {
+      const file = event.target.files[0];
+      setInputs({ ...inputs, [name]: file });
+    } else {
+      setInputs({ ...inputs, [name]: value });
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputs);
-    console.log("sucessfully submitted");
+    Swal.fire({
+      title: "Do you want to file the complaint?",
+      showCancelButton: true,
+      showConfirmButton: true,
+      confirmButtonColor: "#52c74a",
+      showCloseButton: true,
+      showDenyButton: true,
+      denyButtonText: "No",
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        Swal.fire("Saved!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+      }
+    });
   };
 
   return (
-    <div className="complaint-box-details">
-      <Form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            Registration No.
-            <Form.Control
-              type="Void"
-              name="registrationno"
-              value={inputs.registrationno || ""}
-              onChange={handleChange}
-              className=""
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            Room No.
-            <Form.Control
-              type="number"
-              name="roomno"
-              value={inputs.roomno || ""}
-              onChange={handleChange}
-            />
-          </label>
-        </div>
-        <div>
-          <label>
-            Tell us the problem in breif
-            <br />
-            <Form.Control
-              as="textarea"
-              type="text"
-              name="problem"
-              value={inputs.problem || ""}
-              onChange={handleChange}
-            />
-          </label>
-        </div>
-        <div>
-          <Form.Group controlId="formFile" className="mb-3">
-            <Form.Label>Upload the image</Form.Label>
-            <Form.Control type="file"></Form.Control>
-          </Form.Group>
-        </div>
-        <Button type="submit" onClick={handleSubmit}>
-          Submit
-
-        </Button>
-
-      </Form>
+    <div className="complaint-box">
+      <div className="complaint-box-details text-white">
+        <h1>File a Complaint</h1>
+        <Form onSubmit={handleSubmit} className="text-white w-100">
+          <div>
+            <label className="text-white">
+              Registration No.
+              <Form.Control
+                type="Void"
+                name="registrationno"
+                value={inputs.registrationno || ""}
+                onChange={handleChange}
+                className="w-100"
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              Room No.
+              <Form.Control
+                type="number"
+                name="roomno"
+                value={inputs.roomno || ""}
+                onChange={handleChange}
+              />
+            </label>
+          </div>
+          <div>
+            <label>
+              Tell us the problem in breif
+              <br />
+              <Form.Control
+                as="textarea"
+                type="text"
+                name="problem"
+                value={inputs.problem || ""}
+                onChange={handleChange}
+              />
+            </label>
+          </div>
+          <div>
+            <Form.Group controlId="formFile" className="mb-3">
+              <Form.Label>Upload the image</Form.Label>
+              <Form.Control
+                type="file"
+                name="problemImage"
+                onChange={(e) => handleChange(e)}
+              />
+            </Form.Group>
+          </div>
+          <Button type="submit" onClick={handleSubmit}>
+            Submit
+          </Button>
+        </Form>
+      </div>
     </div>
   );
 }
