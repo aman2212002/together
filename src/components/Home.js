@@ -43,6 +43,12 @@ function Home() {
             >
               CALENDAR
             </button>
+            <button
+              onClick={() => window.location.assign("/complaint-box")}
+              className="nav-link-btn"
+            >
+              COMPLAINT BOX
+            </button>
           </div>
         </div>
       </div>

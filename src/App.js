@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Details from "./components/complaint-app/details";
+
 import Home from "./components/Home";
 import Login from "./components/Login";
 import MainNote from "./components/Notes/MainNote";
@@ -19,6 +21,8 @@ class App extends Component {
               element={<MainNote />}
             ></Route>
             <Route caseSensitive path='/time-table' element={<Calendar/>}></Route>
+            <Route caseSensitive path='/complaint-box' element={<Details/>}></Route>
+            <Route caseSensitive path="/details" element={<details/>}></Route>
           </Routes>
         </div>
       </Router>
