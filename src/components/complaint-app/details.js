@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Alert } from "react-bootstrap";
 function Details() {
   const [inputs, setInputs] = useState({});
 
@@ -54,9 +54,17 @@ function Details() {
             />
           </label>
         </div>
+        <div>
+          <Form.Group controlId="formFile" className="mb-3">
+            <Form.Label>Upload the image</Form.Label>
+            <Form.Control type="file"></Form.Control>
+          </Form.Group>
+        </div>
         <Button type="submit" onClick={handleSubmit}>
           Submit
+
         </Button>
+
       </Form>
     </div>
   );
