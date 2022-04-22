@@ -14,34 +14,46 @@ function Details() {
       setInputs({ ...inputs, [name]: value });
     }
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
+   async function handleSubmit(event){
+    event.preventDefault();
+    console.log("inside handleSubmit");
+     await fetch("https://togetherBackend.aman2212002.repl.co/save", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        registrationNo: inputs.registrationno,
+        roomNo: inputs.roomno,
+        problem: inputs.problem
+      })
+    })
+    .then(response => response.json())
+    .then(jsonData => console.log(jsonData))
 
- 
-    Swal.fire({
-      title: "Do you want to file the complaint?",
-      showCancelButton: true,
-      showConfirmButton: true,
-      confirmButtonColor: "#52c74a",
-      showCloseButton: true,
-      showDenyButton: true,
-      denyButtonText: "No",
-    }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
-      if (result.isConfirmed) {
-        Swal.fire("Saved!", "", "success");
-        console.log(inputs);
-      } else if (result.isDenied) {
-        Swal.fire("Changes are not saved", "", "info");
-      }
-    });
+
+    // Swal.fire({
+    //   title: "Do you want to file the complaint?",
+    //   showCancelButton: true,
+    //   showConfirmButton: true,
+    //   confirmButtonColor: "#52c74a",
+    //   showCloseButton: true,
+    //   showDenyButton: true,
+    //   denyButtonText: "No",
+    // }).then(async (result) => {
+    //   /* Read more about isConfirmed, isDenied below */
+    //   if (result.isConfirmed) {
+    //     Swal.fire("Saved!", "", "success");
+    //     console.log(inputs);
+    //   } else if (result.isDenied) {
+    //     Swal.fire("Changes are not saved", "", "info");
+    //   }
+    // });
   };
 
   return (
     <div className="complaint-box">
       <div className="complaint-box-details text-white">
         <h1>File a Complaint</h1>
-        <Form  onSubmit={handleSubmit} className="text-white w-100">
+        <form onSubmit={(event) => handleSubmit(event)} className="text-white w-100">
           <div>
             <label className="text-white">
               Registration No.
@@ -88,10 +100,10 @@ function Details() {
               />
             </Form.Group>
           </div>
-          <Button type="submit" onClick={handleSubmit}>
+          <button type="submit">
             Submit
-          </Button>
-        </Form>
+          </button>
+        </form>
       </div>
     </div>
   );
